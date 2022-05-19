@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 
 const SpaceCard = ({ title, description, backgroundColor, color, id }) => {
   return (
-    <div className="spaceCard" style={{ backgroundColor: { backgroundColor } }}>
+    <div
+      className="spaceCard"
+      style={{ backgroundColor: `${backgroundColor}`, color: `${color}` }}
+    >
       <h2>{title}</h2>
-      <p style={{ color: { color } }}>{description}</p>
+      <p>{description}</p>
       <button>
         <Link to={`/details/${id}`}>Visit Space</Link>
       </button>
