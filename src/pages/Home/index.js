@@ -17,13 +17,14 @@ const Home = () => {
   return (
     <div>
       <HeroBanner>
-        <h1>Spaces</h1>
+        <h1>Home</h1>
       </HeroBanner>
       {spaces.map((space) => {
         return (
           <div className="spaceFeed">
             <SpaceCard
               key={space.id}
+              id={space.id}
               title={space.title}
               description={space.description}
               backgroundColor={space.backgroundColor}
