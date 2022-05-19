@@ -12,12 +12,12 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchSpaces);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
       <HeroBanner>
-        <h1>Home</h1>
+        <h1>Spaces</h1>
       </HeroBanner>
       {spaces.map((space) => {
         return (

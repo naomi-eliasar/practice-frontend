@@ -1,6 +1,5 @@
 .spaceFeed {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 }

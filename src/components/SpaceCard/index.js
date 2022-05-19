@@ -1,14 +1,14 @@
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 const SpaceCard = ({ title, description, backgroundColor, color }) => {
   return (
-    <div
-      className="spaceCard"
-      style={{ color: "{color}", backgroundColor: "{backgroundColor}" }}
-    >
+    <div className="spaceCard" style={{ backgroundColor: { backgroundColor } }}>
       <h2>{title}</h2>
-      <p>{description}</p>
-      <button>Visit Space</button>
+      <p style={{ color: { color } }}>{description}</p>
+      <button>
+        <Link to={`/details`}>Visit Space</Link>
+      </button>
     </div>
   );
 };
