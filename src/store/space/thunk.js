@@ -7,7 +7,7 @@ export async function fetchSpaces(dispatch, getState) {
   try {
     dispatch(startLoading());
     const response = await axios.get(`${API_URL}/space`);
-    console.log("response", response);
+    console.log("response", response.data);
     const spaces = response.data;
     dispatch(spacesFetched(spaces));
   } catch (error) {
@@ -15,7 +15,7 @@ export async function fetchSpaces(dispatch, getState) {
   }
 }
 
-export function fetchDetailsSpace(id) {
+export function fetchDetailSpace(id) {
   return async function (dispatch) {
     try {
       dispatch(startLoading());

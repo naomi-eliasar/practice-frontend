@@ -1,29 +1,46 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectSpaces,
-  // selectSpacesWithStories,
-} from "../../store/space/selectors";
+import { selectDetailSpace } from "../../store/space/selectors";
 import { useParams } from "react-router-dom";
-import { fetchDetailsSpace } from "../../store/space/thunk";
+import { fetchDetailSpace } from "../../store/space/thunk";
 import { useEffect } from "react";
+import StoryCard from "../../components/StoryCard";
 
 const Details = () => {
   const dispatch = useDispatch();
   const routeParams = useParams();
-  const spaces = useSelector(selectSpaces);
-  // const spacesWithStories = useSelector(selectSpacesWithStories);
+  const detailSpace = useSelector(selectDetailSpace);
+
   console.log(routeParams.id);
 
   useEffect(() => {
-    dispatch(fetchDetailsSpace(routeParams.id));
+    dispatch(fetchDetailSpace(routeParams.id));
   }, [dispatch, routeParams.id]);
 
-  return (
+  return detailSpace ? (
     <div>
-      <h2>{spaces.title}</h2>
-      <h2>Stories</h2>
-      {/* <p>{spacesWithStories.name}</p> */}
+      <div key={detailSpace.id}>
+        <h2>{detailSpace.title}</h2>
+        <p>{detailSpace.description}</p>
+      </div>
+      <div>
+        <h3>Stories</h3>
+        {detailSpace.Stories.map((detail) => {
+          return (
+            <div>
+              <StoryCard
+                key={detail.id}
+                id={detail.id}
+                name={detail.name}
+                content={detail.content}
+                img={detail.imageUrl}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
+  ) : (
+    <p>Loading...</p>
   );
 };
 
