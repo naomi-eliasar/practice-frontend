@@ -18,7 +18,13 @@ const Details = () => {
 
   return detailSpace ? (
     <div>
-      <div key={detailSpace.id}>
+      <div
+        key={detailSpace.id}
+        style={{
+          backgroundColor: `${detailSpace.backgroundColor}`,
+          color: `${detailSpace.color}`,
+        }}
+      >
         <h2>{detailSpace.title}</h2>
         <p>{detailSpace.description}</p>
       </div>
