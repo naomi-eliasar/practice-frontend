@@ -23,6 +23,11 @@ const Details = () => {
         style={{
           backgroundColor: `${detailSpace.backgroundColor}`,
           color: `${detailSpace.color}`,
+          width: "100%",
+          minHeight: "200px",
+          paddingTop: "60px",
+          paddingLeft: "100px",
+          marginBottom: "20px",
         }}
       >
         <h2>{detailSpace.title}</h2>

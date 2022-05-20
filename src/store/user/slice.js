@@ -32,10 +32,25 @@ export const userSlice = createSlice({
         (story) => story.id !== storyId
       );
     },
+    addStory: (state, action) => {
+      const { name, content, imageUrl } = action.payload;
+      const newStory = {
+        id: Math.floor(Math.random() * 1000),
+        name,
+        content,
+        imageUrl,
+      };
+      state.space.Stories.push(newStory);
+    },
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid, storyDeleteSuccess } =
-  userSlice.actions;
+export const {
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+  storyDeleteSuccess,
+  addStory,
+} = userSlice.actions;
 
 export default userSlice.reducer;
