@@ -33,12 +33,16 @@ export const userSlice = createSlice({
       );
     },
     addStory: (state, action) => {
-      const { name, content, imageUrl } = action.payload;
+      const { name, content, imageUrl, createdAt, updatedAt, spaceId } =
+        action.payload;
       const newStory = {
         id: Math.floor(Math.random() * 1000),
         name,
         content,
         imageUrl,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        spaceId: state.space.id,
       };
       state.space.Stories.push(newStory);
     },
