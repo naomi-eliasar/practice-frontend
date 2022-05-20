@@ -8,6 +8,7 @@ import {
   logOut,
   tokenStillValid,
   storyDeleteSuccess,
+  addStory,
 } from "./slice";
 
 export const signUp = (name, email, password) => {
@@ -154,3 +155,21 @@ export const deleteStory = (id) => async (dispatch, getState) => {
     console.log(e.message);
   }
 };
+
+export const postStory =
+  (name, content, imageUrl) => async (dispatch, getState) => {
+    try {
+      const spaceId = getState().user.space.id;
+      dispatch(appLoading());
+      const response = await axios.post(`http://localhost:4000/space/story`, {
+        name,
+        content,
+        imageUrl,
+        spaceId,
+      });
+      dispatch(addStory(response.data));
+      dispatch(appDoneLoading());
+    } catch (e) {
+      console.log(e.message);
+    }
+  };

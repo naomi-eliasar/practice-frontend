@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectMySpace } from "../../store/user/selectors";
-import Loading from "../../components/Loading";
+import { selectMySpace, selectToken } from "../../store/user/selectors";
+import { useNavigate } from "react-router-dom";
 import { deleteStory } from "../../store/user/actions";
 import StorySpaceCard from "../../components/StorySpaceCard";
 import AddStoryForm from "../../components/AddStoryForm";
 
 const MySpace = () => {
-  const [formOpen, setFormOpen] = useState(false);
-  const dispatch = useDispatch();
-
+  const token = useSelector(selectToken);
   const space = useSelector(selectMySpace);
-  if (!space) return <Loading />;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [formOpen, setFormOpen] = useState(false);
+
+  useEffect(() => {
+    if (!token) navigate("/");
+  }, [token, navigate]);
 
   const onDeleteClick = (id) => {
     console.log("clicked?", id);
