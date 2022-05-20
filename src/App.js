@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Other from "./pages/Other";
 import Details from "./pages/Details";
-
+import MySpace from "./components/Navigation/MySpace";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
@@ -34,6 +34,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/details/:id" element={<Details />} />
+        <Route path="/myspace" element={<MySpace />} />
       </Routes>
     </div>
   );
