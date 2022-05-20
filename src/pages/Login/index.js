@@ -17,7 +17,7 @@ export default function SignUp() {
 
   useEffect(() => {
     if (token !== null) {
-      navigate("/myspace");
+      navigate("/");
     }
   }, [token, navigate]);
 

@@ -3,7 +3,12 @@ import axios from "axios";
 import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
-import { loginSuccess, logOut, tokenStillValid } from "./slice";
+import {
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+  storyDeleteSuccess,
+} from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -22,7 +27,9 @@ export const signUp = (name, email, password) => {
           space: response.data.space,
         })
       );
+
       dispatch(showMessageWithTimeout("success", true, "account created"));
+
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -59,9 +66,15 @@ export const login = (email, password) => {
       });
 
       dispatch(
-        loginSuccess({ token: response.data.token, user: response.data.user })
+        loginSuccess({
+          token: response.data.token,
+          user: response.data.user,
+          space: response.data.space,
+        })
       );
+
       dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
+
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -103,9 +116,15 @@ export const getUserWithStoredToken = () => {
       const response = await axios.get(`${apiUrl}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log("me response", response.data);
 
       // token is still valid
-      dispatch(tokenStillValid({ user: response.data }));
+      dispatch(
+        tokenStillValid({
+          user: response.data.user,
+          space: response.data.space,
+        })
+      );
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -119,4 +138,19 @@ export const getUserWithStoredToken = () => {
       dispatch(appDoneLoading());
     }
   };
+};
+
+export const deleteStory = (id) => async (dispatch, getState) => {
+  try {
+    dispatch(appLoading());
+    const response = await axios.delete(
+      `http://localhost:4000/space/story/${id}`
+    );
+    console.log(response.data);
+
+    dispatch(storyDeleteSuccess({ storyId: id }));
+    dispatch(appDoneLoading());
+  } catch (e) {
+    console.log(e.message);
+  }
 };
