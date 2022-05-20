@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Other from "./pages/Other";
 import Details from "./pages/Details";
-import MySpace from "./components/Navigation/MySpace";
+import MySpace from "./pages/MySpace";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";

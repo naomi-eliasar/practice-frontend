@@ -7,13 +7,13 @@ import { selectToken } from "../../store/user/selectors";
 import NavbarItem from "./NavbarItem";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
-import MySpace from "./MySpace";
+import MySpaceNav from "./MySpaceNav";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
-  const showMySpace = token ? <MySpace /> : null;
+  const showMySpace = token ? <MySpaceNav /> : null;
 
   return (
     <Navbar bg="light" expand="lg">
