@@ -157,7 +157,8 @@ export const deleteStory = (id) => async (dispatch, getState) => {
 };
 
 export const postStory =
-  (name, content, imageUrl) => async (dispatch, getState) => {
+  ({ name, content, imageUrl }) =>
+  async (dispatch, getState) => {
     try {
       const spaceId = getState().user.space.id;
       dispatch(appLoading());

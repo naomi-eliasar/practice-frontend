@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addStory } from "../../store/user/slice";
+import { postStory } from "../../store/user/actions";
 
 const AddStoryForm = () => {
   const [name, setName] = useState("");
@@ -20,7 +20,12 @@ const AddStoryForm = () => {
       imageUrl,
     };
 
-    dispatch(addStory(newStory));
+    // console.log("new story const", newStory);
+
+    // postStory(newStory);
+    // console.log("post story", postStory);
+
+    dispatch(postStory(newStory));
 
     setName("");
     setContent("");
@@ -34,7 +39,7 @@ const AddStoryForm = () => {
         <label>
           Name:{" "}
           <input
-            type="text"
+            type="string"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
